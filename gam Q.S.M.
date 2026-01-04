@@ -1,0 +1,87 @@
+import time
+
+# Durée du test : 1h30 = 5400 secondes
+duree = 5400
+debut = time.time()
+
+score = 0
+
+print("🎮 Jeu QCM : Formation du sol 🌱")
+print("⏱️ Durée : 1 heure et 30 minutes")
+print("📊 Notation sur 20")
+print("---------------------------------------")
+
+questions = [
+    ("Comment appelle-t-on la formation du sol ?",
+     ["A) Érosion", "B) Pédogenèse", "C) Sédimentation"], "B"),
+
+    ("Quel facteur n’influence PAS la formation du sol ?",
+     ["A) Climat", "B) Temps", "C) Télévision"], "C"),
+
+    ("Quel horizon contient la litière ?",
+     ["A) Horizon O", "B) Horizon A", "C) Horizon B"], "A"),
+
+    ("Quel horizon est riche en humus ?",
+     ["A) Horizon C", "B) Horizon A", "C) Horizon B"], "B"),
+
+    ("Où s’accumulent les sels minéraux ?",
+     ["A) Horizon O", "B) Horizon A", "C) Horizon B"], "C"),
+
+    ("Quelle texture du sol retient le plus d’eau ?",
+     ["A) Sable", "B) Argile", "C) Gravier"], "B"),
+
+    ("Quelle eau est disponible pour les plantes ?",
+     ["A) Eau de gravité", "B) Eau capillaire", "C) Eau hygroscopique"], "B"),
+
+    ("Quel est le rôle des micro-organismes du sol ?",
+     ["A) Décomposer la matière organique",
+      "B) Détruire le sol",
+      "C) Sécher le sol"], "A"),
+
+    ("Quel animal améliore la structure du sol ?",
+     ["A) Ver de terre", "B) Serpent", "C) Oiseau"], "A"),
+
+    ("Quelle activité humaine dégrade le sol ?",
+     ["A) Reboisement", "B) Surpâturage", "C) Protection du sol"], "B"),
+]
+
+for i, q in enumerate(questions, 1):
+    temps_ecoule = time.time() - debut
+    temps_restant = duree - temps_ecoule
+
+    if temps_restant <= 0:
+        print("\n⏰ Temps écoulé !")
+        break
+
+    print(f"\nQuestion {i}")
+    print(q[0])
+    for choix in q[1]:
+        print(choix)
+
+    reponse = input("Votre réponse : ").upper()
+
+    if reponse == q[2]:
+        print("✔ Bonne réponse")
+        score += 1
+    else:
+        print("✘ Mauvaise réponse")
+
+    minutes = int(temps_restant // 60)
+    secondes = int(temps_restant % 60)
+    print(f"⏳ Temps restant : {minutes} min {secondes} s")
+
+# Calcul de la note sur 20
+total_questions = len(questions)
+note = (score / total_questions) * 20
+
+print("\n--------------------------------")
+print("📊 Résultat final")
+print(f"✔ Bonnes réponses : {score} / {total_questions}")
+print(f"🎓 Note finale : {note:.2f} / 20")
+
+if note >= 16:
+    print("🏆 Excellent !")
+elif note >= 10:
+    print("🙂 Niveau satisfaisant")
+else:
+    print("📘 Niveau insuffisant, révisez la leçon")
